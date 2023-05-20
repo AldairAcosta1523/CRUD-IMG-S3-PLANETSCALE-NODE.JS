@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TABLA DE PRODUCTOS - CRUD</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link href="DataTables/datatables.min.css" rel="stylesheet"/>
+    <script src="DataTables/datatables.min.js"></script>
+    <script type="text/javascript">
+      function DeleteConfirm() {
+        if (confirm("¿Quieres eliminar el registro?"))
+          return true;
+        else
+          return false;
+      }
+      function CreateConfirm() {
+        if (confirm("¿Quieres agregar un nuevo registro?"))
+          return true;
+        else
+          return false;
+      }
+      function EditConfirm() {
+        if (confirm("¿Quieres editar este registro?"))
+          return true;
+        else
+          return false;
+      }
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <br>
+      <br>
+      <h1 align="left">TABLA DE PRODUCTOS - CRUD</h1>
+      <br>
+      <a href="/create" onclick="return CreateConfirm()" type="button" class="btn btn-success">INGRESAR NUEVO PRODUCTO</a>
+      <br>
+      <br>
+      <br>
+      <table class="table table-dark table-bordered table-striped" id="myTable">
+        <thead align="center">
+          <tr>
+            <th>ID</th>
+            <th>NOMBRE</th>
+            <th>DESCRIPCION</th>
+            <th>CANTIDAD</th>
+            <th>MARCA</th>
+            <th>PRECIO</th>
+            <th>IMAGEN</th>
+            <th>ACCIONES</th>
+          </tr>
+        </thead>
+        <tbody align="center">
+          <% data.forEach((row) => { %>
+            <tr>
+              <td class="align-middle"><%= row.id %></td>
+              <td class="align-middle"><%= row.nombre %></td>
+              <td class="align-middle"><%= row.descripcion%></td>
+              <td class="align-middle"><%= row.cantidad%></td>
+              <td class="align-middle"><%= row.marca%></td>
+              <td class="align-middle"><%= row.precio%></td>
+              <td class="align-middle">
+              <!--Poniendo la ruta (src="/images/<%= row.imagen %>") se pueden ver las imagenes locales -->
+              <img src="https://imagen3.s3-us-east-2.amazonaws.com/<%= row.imagen %>" alt="" height="80" style="border-radius: 10px;">
+            </td>
+              <td class="align-middle">
+                <div class="d-grid gap-2 d-md-block">
+                  <a href="/edit/<%= row.id %>" onclick="return EditConfirm()" type="button" class="btn btn-warning me-1">EDITAR</a>
+                  <a href="/delete/<%= row.id %>" onclick="return DeleteConfirm()" class="btn btn-danger" type="button">ELIMINAR</a>
+                </div>
+              </td>
+            </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+    <script>
+      $(document).ready( function () {
+        $('#myTable').DataTable();
+      } );
+      </script>

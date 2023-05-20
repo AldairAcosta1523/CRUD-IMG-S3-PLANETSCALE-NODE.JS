@@ -1,0 +1,11 @@
+CREATE TABLE crudimg (
+    id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    nombre varchar(255),
+    descripcion varchar(255),
+    cantidad int,
+    marca varchar(255),
+    precio double,
+    imagen varchar(255)
+);
+
+insert into crudimg ( nombre, descripcion , cantidad , marca , precio , imagen) values ( "Pablo", "Pablo de los Backyardigans", 2 , "Pablo" , 1500 , "https://imagen3.s3.us-east-2.amazonaws.com/pablo.jpg");
