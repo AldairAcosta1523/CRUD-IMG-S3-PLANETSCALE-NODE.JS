@@ -9,3 +9,8 @@ CREATE TABLE crudimg (
 );
 
 insert into crudimg ( nombre, descripcion , cantidad , marca , precio , imagen) values ( "Pablo", "Pablo de los Backyardigans", 2 , "Pablo" , 1500 , "https://imagen3.s3.us-east-2.amazonaws.com/pablo.jpg");
+
+
+//////////
+
+SIEMPRE AGREGAR ARCHIVO ".env" DONDE SE ENCONTRARA NUESTRA BASE DE DATOS Y NUESTRO BUCKET DE AWS
